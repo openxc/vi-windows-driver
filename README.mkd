@@ -5,11 +5,38 @@ This is a Windows driver for an [OpenXC vehicle
 interface](http://openxcplatform.com/vehicle-interface/hardware.html) attached
 via USB. You must install this driver to send and receive data through the VI
 from Windows (including Cygwin). The driver is compatible with 32-bit and 64-bit
-Windows 7, Vista and XP.
+Windows 8.1, Windows 8, Windows 7, Vista and XP.
 
 After downloading the driver files, plug the VI into your computer via USB.
 Windows will search for a driver but will be unable to find one - you have to
 manually browse to the folder where you downloaded this driver.
+
+
+Windows 8.1/8
+---------------
+
+1. Most likely you will have to following the instructions at
+   http://www.howtogeek.com/167723/how-to-disable-driver-signature-verification-on-64-bit-windows-8.1-so-that-you-can-install-unsigned-drivers/
+   to disable the Windows 8.1 security setting disallowing unsigned drivers.
+   This is the default so you will almost certainly have to perform this step first.
+   This procedure requires you to reboot twice to complete so be patient
+2. When the above has been completed, begin by searching for Device Manager
+   from the main Windos 8 screen. To get to this screen hit the Windows button 
+   on your keyboard or click the Windows icon in the lower left corner of the screen
+3. Type "Device Manager" to search for "Device Manager" and open it
+4. Locate a device with a yellow question mark next to its icon. Assuming you
+   have no other USB devices with no assigned drivers, this will be your OpenXC
+   module. Right-click this device and click "Update Driver Software..."
+5. Select the bottom option to "Browse my computer for driver software"
+6. Click "Let me pick from a list of devices drivers on my computer"
+7. Click the "Have Disk..." button, then click "Browse..."
+8. Locate the OpenXC_Vehicle_Interface.inf file in the main directory
+   where you downloaded the repository files and select it.
+9. Click "OK" on the Install From Disk dialog box, then click Next on the Update
+   Driver Software screen.
+10. Windows will give you a warning that you are attempting to install
+    an unsigned driver. Click "Continue Anyway".
+11. After the driver is installed, restart your computer.
 
 Windows 7/Vista
 ---------------
@@ -22,8 +49,8 @@ Windows 7/Vista
 3. Click "Browse my computer for driver software"
 4. Click "Let me pick from a list of devices drivers on my computer"
 5. Click the "Have Disk..." button, then click "Browse..."
-6. Locate the OpenXC_CAN_Translator.inf file under
-   vi-firmware/conf/windows-driver/ and select it.
+6. Locate the OpenXC_Vehicle_Interface.inf file in the main directory
+   where you downloaded the repository files and select it.
 7. Click "OK" on the Install From Disk dialog box, then click Next on the Update
    Driver Software screen.
 8. If Windows gives you a warning regarding Driver Certification, click
@@ -42,8 +69,8 @@ Windows XP
 5. Select "Install from a list or specific location (Advanced). Click Next.
 6. Select "Don't search. I will choose the driver to install." Click Next.
 7. Click the "Have Disk..." button, then click "Browse..."
-8. Locate the OpenXC_CAN_Translator.inf file under
-   vi-firmware/conf/windows-driver/ and select it.
+8. Locate the OpenXC_Vehicle_Interface.inf file in the main directory
+   where you downloaded the repository files and select it.
 9. Click "OK" on the Install From Disk dialog box, and "OK" to any additional
    confirmations.
 10. If Windows gives you a warning regarding Driver Certification, click
@@ -58,12 +85,16 @@ library, then run the "openxc-version" command. It should report back which car
 firmware you have flashed onto the VI (Or report no firmware installed if you
 haven't flashed a firmware yet).
 
+Note: This may return a non-fatal error prior to returning the openxc-version
+      in which case the driver has still been installed successfully.
+
 If you're still getting errors about USB not being found/installed, restart your
 computer, and if the issue persists, come ask for help in the Google Group.
 
 ## License
 
-This driver was created with the libusb-win32 filter driver creator.
+This driver was created with the libusb-win32 filter driver creator
+and the inf-wizard .inf file creator.
 
 The library (libusb0_*.dll) is distributed under the terms of the GNU Lesser
 General Public License (LGPL). The driver portion (libusb0.sys) is distributed
