@@ -101,4 +101,4 @@ General Public License (LGPL). The driver portion (libusb0.sys) is distributed
 under the terms of the GNU General Public License (GPL).
 
 The source code and full licenses for are available at the
-[libusb-win32](http://sourceforge.net/apps/trac/libusb-win32/wiki) project.
+[libusb-win32](https://sourceforge.net/projects/libusb-win32/) project.
